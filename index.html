@@ -28,6 +28,7 @@
             background-color: var(--dark-bg);
             color: var(--light-text);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         h1, h2, h3, h4 {
@@ -53,7 +54,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            background-color: rgba(15, 15, 15, 0.95);
+            background-color: rgba(15, 15, 15, 0.85);
             backdrop-filter: blur(10px);
             z-index: 1000;
             padding: 20px 0;
@@ -112,38 +113,58 @@
             cursor: pointer;
         }
 
-        /* Hero Section */
+        /* Hero Section with Video */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(15, 15, 15, 0.7), rgba(15, 15, 15, 0.7)), 
-                        url('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
-            background-size: cover;
-            background-position: center;
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding-top: 80px;
+            overflow: hidden;
+        }
+
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 15, 15, 0.6);
+            z-index: -1;
         }
 
         .hero-content {
             max-width: 800px;
             padding: 0 20px;
+            z-index: 1;
         }
 
         .hero h1 {
             font-size: 4rem;
             margin-bottom: 20px;
             color: var(--gold);
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
         }
 
         .hero p {
             font-size: 1.2rem;
             margin-bottom: 40px;
-            color: var(--gray-text);
+            color: var(--light-text);
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
         }
 
         .hero-buttons {
@@ -158,6 +179,7 @@
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s ease;
+            display: inline-block;
         }
 
         .btn-primary {
@@ -168,7 +190,7 @@
         .btn-primary:hover {
             background-color: #e6c158;
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
         }
 
         .btn-secondary {
@@ -238,17 +260,53 @@
 
         .product-info {
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .product-name {
             font-size: 1.2rem;
             margin-bottom: 10px;
             color: var(--light-text);
+            text-align: center;
         }
 
         .product-price {
             color: var(--gold);
             font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        /* About Section */
+        .about-section {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            margin-bottom: 100px;
+        }
+
+        .about-image {
+            flex: 1;
+            height: 500px;
+            background: url('https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2067&q=80') center/cover;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .about-content {
+            flex: 1;
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--gold);
+        }
+
+        .about-content p {
+            margin-bottom: 20px;
+            color: var(--gray-text);
         }
 
         /* Contact Section */
@@ -389,6 +447,44 @@
             font-size: 0.9rem;
         }
 
+        /* Modal for product details */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 10px;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--gray-text);
+            transition: color 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--gold);
+        }
+
         /* Responsive Design */
         @media (max-width: 992px) {
             .hero h1 {
@@ -397,6 +493,14 @@
             
             .contact-section {
                 padding: 40px;
+            }
+            
+            .about-section {
+                flex-direction: column;
+            }
+            
+            .about-image {
+                width: 100%;
             }
         }
 
@@ -462,7 +566,8 @@
             <a href="#" class="logo">Vitamin Accessories</a>
             <div class="nav-links">
                 <a href="#home">Home</a>
-                <a href="#products">Products</a>
+                <a href="#products">Collections</a>
+                <a href="#about">Our Story</a>
                 <a href="#contact">Contact</a>
             </div>
             <button class="mobile-menu-btn">
@@ -471,14 +576,35 @@
         </div>
     </nav>
 
-    <!-- Home/Hero Section -->
+    <!-- Home/Hero Section with Video -->
     <section class="hero" id="home">
+        <video autoplay muted loop class="video-background">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-woman-wearing-gold-jewelry-41733-large.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="video-overlay"></div>
         <div class="hero-content">
             <h1>Delicate Jewelry</h1>
             <p>These jewelry pieces will be unforgettable gifts that preserve wonderful moments for many years.</p>
             <div class="hero-buttons">
-                <a href="#products" class="btn btn-primary">Shop Now</a>
-                <a href="#contact" class="btn btn-secondary">Learn More</a>
+                <a href="#products" class="btn btn-primary">Explore Collection</a>
+                <a href="#about" class="btn btn-secondary">Our Craftsmanship</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="about-section">
+                <div class="about-image"></div>
+                <div class="about-content">
+                    <h2>Our Story</h2>
+                    <p>Founded in 2015, Vitamin Accessories began as a small boutique in Nairobi with a vision to create jewelry that tells a story. Each piece is meticulously crafted by our skilled artisans, combining traditional techniques with contemporary design.</p>
+                    <p>Our name "Vitamin" reflects our belief that beautiful accessories are essential to personal expression - just like vitamins are essential to health.</p>
+                    <p>We source only the finest materials, from ethically-mined gemstones to recycled precious metals, ensuring our creations are as responsible as they are beautiful.</p>
+                    <a href="#contact" class="btn btn-primary" style="margin-top: 20px;">Visit Our Atelier</a>
+                </div>
             </div>
         </div>
     </section>
@@ -486,14 +612,15 @@
     <!-- Products Section -->
     <section class="section" id="products">
         <div class="container">
-            <h2 class="section-title">Our Collection</h2>
+            <h2 class="section-title">Signature Collection</h2>
             <div class="products-grid">
                 <!-- Product 1 -->
                 <div class="product-card">
                     <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')"></div>
                     <div class="product-info">
                         <h3 class="product-name">Eternal Gold Necklace</h3>
-                        <p class="product-price">KSH 2,900</p>
+                        <p class="product-price">KSH 219,900</p>
+                        <a href="#" class="btn btn-secondary view-details" data-product="eternal">View Details</a>
                     </div>
                 </div>
                 <!-- Product 2 -->
@@ -501,7 +628,8 @@
                     <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2067&q=80')"></div>
                     <div class="product-info">
                         <h3 class="product-name">Diamond Solitaire Ring</h3>
-                        <p class="product-price">KSH 4,900</p>
+                        <p class="product-price">KSH 249,900</p>
+                        <a href="#" class="btn btn-secondary view-details" data-product="solitaire">View Details</a>
                     </div>
                 </div>
                 <!-- Product 3 -->
@@ -509,7 +637,8 @@
                     <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80')"></div>
                     <div class="product-info">
                         <h3 class="product-name">Pearl Elegance Earrings</h3>
-                        <p class="product-price">KSH 1,900</p>
+                        <p class="product-price">KSH 179,900</p>
+                        <a href="#" class="btn btn-secondary view-details" data-product="pearl">View Details</a>
                     </div>
                 </div>
                 <!-- Product 4 -->
@@ -517,7 +646,8 @@
                     <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1588444650700-6c7f0c89d36b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')"></div>
                     <div class="product-info">
                         <h3 class="product-name">Rose Gold Bangle</h3>
-                        <p class="product-price">KSH 1,900</p>
+                        <p class="product-price">KSH 159,900</p>
+                        <a href="#" class="btn btn-secondary view-details" data-product="bangle">View Details</a>
                     </div>
                 </div>
                 <!-- Product 5 -->
@@ -525,7 +655,8 @@
                     <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1602173574767-37ac01994b2a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80')"></div>
                     <div class="product-info">
                         <h3 class="product-name">Sapphire Statement Necklace</h3>
-                        <p class="product-price">KSH 2,900</p>
+                        <p class="product-price">KSH 229,900</p>
+                        <a href="#" class="btn btn-secondary view-details" data-product="sapphire">View Details</a>
                     </div>
                 </div>
                 <!-- Product 6 -->
@@ -533,9 +664,13 @@
                     <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1611591437281-460bfbe1220a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')"></div>
                     <div class="product-info">
                         <h3 class="product-name">Minimalist Gold Chain</h3>
-                        <p class="product-price">KSH 1,900</p>
+                        <p class="product-price">KSH 189,900</p>
+                        <a href="#" class="btn btn-secondary view-details" data-product="minimalist">View Details</a>
                     </div>
                 </div>
+            </div>
+            <div style="text-align: center; margin-top: 50px;">
+                <a href="#contact" class="btn btn-primary">Book a Private Viewing</a>
             </div>
         </div>
     </section>
@@ -543,28 +678,44 @@
     <!-- Contact Section -->
     <section class="section" id="contact">
         <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
+            <h2 class="section-title">Experience Luxury</h2>
             <div class="contact-section">
                 <form class="contact-form">
                     <div class="form-group">
-                        <label for="name">Name</label>
+                        <label for="name">Full Name</label>
                         <input type="text" id="name" required>
                     </div>
                     <div class="form-group">
-                        <label for="email">Email</label>
+                        <label for="email">Email Address</label>
                         <input type="email" id="email" required>
                     </div>
                     <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" rows="5" required></textarea>
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone">
                     </div>
-                    <button type="submit" class="submit-btn">Send Message</button>
+                    <div class="form-group">
+                        <label for="interest">I'm interested in</label>
+                        <select id="interest" style="padding: 12px 15px; border: 1px solid #333; border-radius: 5px; background-color: #2a2a2a; color: var(--light-text);">
+                            <option value="">Select an option</option>
+                            <option value="engagement">Engagement Jewelry</option>
+                            <option value="everyday">Everyday Collection</option>
+                            <option value="statement">Statement Pieces</option>
+                            <option value="custom">Custom Design</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" rows="5" placeholder="Tell us about your jewelry preferences or any special requests..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Request Consultation</button>
                 </form>
                 <div class="store-info">
-                    <h3>Visit Our Store</h3>
-                    <p>Nairobi, Parklands</p>
-                    <p>Phone: (123) 456-7890</p>
-                    <p>Email: info@vitaminaccessories.com</p>
+                    <h3>Visit Our Atelier</h3>
+                    <p><i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i>Nairobi, Parklands</p>
+                    <p><i class="fas fa-phone" style="margin-right: 10px;"></i>+254 712 345 678</p>
+                    <p><i class="fas fa-envelope" style="margin-right: 10px;"></i>experience@vitaminaccessories.com</p>
+                    <p><i class="fas fa-clock" style="margin-right: 10px;"></i>By appointment only</p>
+                    <a href="#" class="btn btn-secondary" style="margin-top: 20px;">Download Lookbook</a>
                 </div>
             </div>
         </div>
@@ -579,25 +730,28 @@
                     <p>Crafting timeless jewelry pieces that celebrate life's precious moments with elegance and sophistication.</p>
                     <div class="social-icons">
                         <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
                     </div>
                 </div>
                 <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <p><a href="#home">Home</a></p>
-                    <p><a href="#products">Collections</a></p>
-                    <p><a href="#contact">Contact</a></p>
-                    <p><a href="#">About Us</a></p>
+                    <h3>Collections</h3>
+                    <p><a href="#">Engagement</a></p>
+                    <p><a href="#">Bridal</a></p>
+                    <p><a href="#">Everyday Luxury</a></p>
+                    <p><a href="#">Statement Pieces</a></p>
                 </div>
                 <div class="footer-column">
-                    <h3>Customer Service</h3>
-                    <p><a href="#">Shipping & Returns</a></p>
-                    <p><a href="#">Privacy Policy</a></p>
-                    <p><a href="#">Terms & Conditions</a></p>
-                    <p><a href="#">FAQ</a></p>
+                    <h3>Services</h3>
+                    <p><a href="#">Custom Design</a></p>
+                    <p><a href="#">Jewelry Care</a></p>
+                    <p><a href="#">Repairs & Restoration</a></p>
+                    <p><a href="#">Virtual Consultations</a></p>
                 </div>
                 <div class="footer-column">
                     <h3>Newsletter</h3>
-                    <p>Subscribe to receive updates on new collections and exclusive offers.</p>
+                    <p>Subscribe to receive updates on new collections and exclusive events.</p>
                     <div class="form-group">
                         <input type="email" placeholder="Your email address">
                         <button class="submit-btn" style="margin-top: 10px;">Subscribe</button>
@@ -605,10 +759,25 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2025 Vitamin Accessories. All rights reserved.</p>
+                <p>&copy; 2023 Vitamin Accessories. Crafted with passion in Nairobi.</p>
             </div>
         </div>
     </footer>
+
+    <!-- Product Detail Modal -->
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="modal-product-name">Product Name</h2>
+            <div id="modal-product-image" style="height: 300px; background-size: cover; background-position: center; border-radius: 10px; margin: 20px 0;"></div>
+            <p id="modal-product-description">Product description will appear here.</p>
+            <p id="modal-product-price" style="color: var(--gold); font-weight: 500; font-size: 1.2rem; margin: 15px 0;"></p>
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                <a href="#contact" class="btn btn-primary">Inquire About This Piece</a>
+                <a href="#" class="btn btn-secondary" id="modal-wishlist">Add to Wishlist</a>
+            </div>
+        </div>
+    </div>
 
     <script>
         // Mobile menu toggle
@@ -644,8 +813,87 @@
         const contactForm = document.querySelector('.contact-form');
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Thank you for your message! We will get back to you soon.');
+            alert('Thank you for your inquiry! Our luxury consultant will contact you within 24 hours to schedule your private viewing.');
             this.reset();
+        });
+        
+        // Product modal functionality
+        const modal = document.getElementById('productModal');
+        const closeModal = document.querySelector('.close-modal');
+        const viewDetailsButtons = document.querySelectorAll('.view-details');
+        
+        // Product data
+        const products = {
+            eternal: {
+                name: "Eternal Gold Necklace",
+                image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+                description: "Crafted from 18K yellow gold, this timeless necklace features a delicate chain with a solitaire diamond pendant. Perfect for everyday elegance or special occasions.",
+                price: "KSH 219,900"
+            },
+            solitaire: {
+                name: "Diamond Solitaire Ring",
+                image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2067&q=80",
+                description: "A classic 1-carat diamond set in platinum with a six-prong setting that maximizes brilliance. The band is tapered for a delicate, feminine appearance.",
+                price: "KSH 249,900"
+            },
+            pearl: {
+                name: "Pearl Elegance Earrings",
+                image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80",
+                description: "South Sea pearls set in 14K white gold with diamond accents. These elegant drop earrings bring sophistication to any ensemble.",
+                price: "KSH 179,900"
+            },
+            bangle: {
+                name: "Rose Gold Bangle",
+                image: "https://images.unsplash.com/photo-1588444650700-6c7f0c89d36b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+                description: "A sleek rose gold bangle with a subtle hammered texture. This versatile piece can be worn alone or stacked with other bracelets.",
+                price: "KSH 159,900"
+            },
+            sapphire: {
+                name: "Sapphire Statement Necklace",
+                image: "https://images.unsplash.com/photo-1602173574767-37ac01994b2a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80",
+                description: "Featuring a stunning blue sapphire surrounded by brilliant diamonds in a floral-inspired setting. This piece makes a bold statement for special occasions.",
+                price: "KSH 229,900"
+            },
+            minimalist: {
+                name: "Minimalist Gold Chain",
+                image: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+                description: "A delicate 14K gold chain with a subtle twist design. Perfect for layering or wearing alone as an understated everyday accessory.",
+                price: "KSH 189,900"
+            }
+        };
+        
+        // Open modal when view details is clicked
+        viewDetailsButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const productId = this.getAttribute('data-product');
+                const product = products[productId];
+                
+                document.getElementById('modal-product-name').textContent = product.name;
+                document.getElementById('modal-product-image').style.backgroundImage = `url('${product.image}')`;
+                document.getElementById('modal-product-description').textContent = product.description;
+                document.getElementById('modal-product-price').textContent = product.price;
+                
+                modal.style.display = 'flex';
+            });
+        });
+        
+        // Close modal
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+        
+        // Wishlist functionality
+        document.getElementById('modal-wishlist').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('This piece has been added to your wishlist. We will notify you if it becomes available for private viewing.');
         });
     </script>
 </body>
