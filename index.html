@@ -223,6 +223,15 @@
             margin-bottom: 15px;
         }
 
+        .product-description-short {
+            font-size: 14px;
+            color: #aaa;
+            margin-bottom: 15px;
+            line-height: 1.5;
+            height: 42px;
+            overflow: hidden;
+        }
+
         .add-to-cart-btn {
             width: 100%;
             padding: 10px;
@@ -255,6 +264,180 @@
         @keyframes rotate {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
+        }
+
+        /* WhatsApp AI Assistant Button */
+        .whatsapp-assistant {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .whatsapp-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            color: white;
+            border-radius: 50%;
+            font-size: 28px;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.7);
+        }
+
+        .whatsapp-tooltip {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            background-color: #111;
+            color: #D4AF37;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s;
+            pointer-events: none;
+            border: 1px solid #D4AF37;
+        }
+
+        .whatsapp-btn:hover .whatsapp-tooltip {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Product Detail Page */
+        .product-detail {
+            display: none;
+            padding: 80px 0;
+            background-color: #000;
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            color: #D4AF37;
+            font-size: 18px;
+            margin-bottom: 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+
+        .back-btn:hover {
+            color: #fff;
+            transform: translateX(-5px);
+        }
+
+        .product-detail-content {
+            display: flex;
+            gap: 50px;
+        }
+
+        .product-gallery {
+            flex: 1;
+        }
+
+        .main-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            transition: transform 0.5s;
+        }
+
+        .main-image:hover {
+            transform: scale(1.02);
+        }
+
+        .thumbnail-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: all 0.3s;
+        }
+
+        .thumbnail:hover, .thumbnail.active {
+            opacity: 1;
+            border: 2px solid #D4AF37;
+            transform: scale(1.1);
+        }
+
+        .product-info-detail {
+            flex: 1;
+        }
+
+        .product-title-detail {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .product-price-detail {
+            font-size: 24px;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .product-description {
+            color: #fff;
+            margin-bottom: 30px;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .product-features {
+            margin-bottom: 30px;
+        }
+
+        .product-features h3 {
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+
+        .product-features ul {
+            list-style-type: none;
+            color: #fff;
+        }
+
+        .product-features li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .product-features li:before {
+            content: "•";
+            color: #D4AF37;
+            position: absolute;
+            left: 0;
+        }
+
+        .detail-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
         }
 
         /* Cart Modal */
@@ -640,8 +823,21 @@
                 margin-top: 10px;
             }
 
+            .product-detail-content {
+                flex-direction: column;
+            }
+
             .payment-options {
                 flex-direction: column;
+            }
+
+            .detail-actions {
+                flex-direction: column;
+            }
+
+            .whatsapp-assistant {
+                bottom: 20px;
+                right: 20px;
             }
         }
     </style>
@@ -690,6 +886,7 @@
                     <div class="product-info">
                         <h3 class="product-title">Elegant Gold Necklace</h3>
                         <p class="product-price">KSH 4,500</p>
+                        <p class="product-description-short">A delicate 18K gold necklace with a beautiful pendant, perfect for everyday elegance.</p>
                         <button class="add-to-cart-btn" data-id="1" data-name="Elegant Gold Necklace" data-price="4500" data-image="https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80">
                             <i class="fas fa-shopping-cart"></i> Add to Cart
                         </button>
@@ -702,6 +899,7 @@
                     <div class="product-info">
                         <h3 class="product-title">Diamond Elegance Ring</h3>
                         <p class="product-price">KSH 5,800</p>
+                        <p class="product-description-short">Stunning diamond ring with a brilliant-cut stone set in a classic gold band.</p>
                         <button class="add-to-cart-btn" data-id="2" data-name="Diamond Elegance Ring" data-price="5800" data-image="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80">
                             <i class="fas fa-shopping-cart"></i> Add to Cart
                         </button>
@@ -714,6 +912,7 @@
                     <div class="product-info">
                         <h3 class="product-title">Golden Dangle Earrings</h3>
                         <p class="product-price">KSH 3,200</p>
+                        <p class="product-description-short">Elegant dangle earrings that add movement and sophistication to any outfit.</p>
                         <button class="add-to-cart-btn" data-id="3" data-name="Golden Dangle Earrings" data-price="3200" data-image="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80">
                             <i class="fas fa-shopping-cart"></i> Add to Cart
                         </button>
@@ -726,9 +925,93 @@
                     <div class="product-info">
                         <h3 class="product-title">Delicate Gold Bracelet</h3>
                         <p class="product-price">KSH 4,200</p>
+                        <p class="product-description-short">A fine gold bracelet with subtle details, perfect for stacking or wearing alone.</p>
                         <button class="add-to-cart-btn" data-id="4" data-name="Delicate Gold Bracelet" data-price="4200" data-image="https://images.unsplash.com/photo-1588444650700-6c7f0c89d36b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80">
                             <i class="fas fa-shopping-cart"></i> Add to Cart
                         </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Detail Pages -->
+    <!-- Product 1 Detail -->
+    <section class="product-detail" id="product-detail-1">
+        <div class="container">
+            <button class="back-btn" id="backBtn1">
+                <i class="fas fa-arrow-left"></i> Back to Products
+            </button>
+            <div class="product-detail-content">
+                <div class="product-gallery">
+                    <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Elegant Gold Necklace" class="main-image" id="mainImage1">
+                    <div class="thumbnail-container">
+                        <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Elegant Gold Necklace" class="thumbnail active" data-image="https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80">
+                        <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Elegant Gold Necklace" class="thumbnail" data-image="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80">
+                        <img src="https://images.unsplash.com/photo-1596944946755-63b77bf5ffc8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Elegant Gold Necklace" class="thumbnail" data-image="https://images.unsplash.com/photo-1596944946755-63b77bf5ffc8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80">
+                    </div>
+                </div>
+                <div class="product-info-detail">
+                    <h1 class="product-title-detail">Elegant Gold Necklace</h1>
+                    <p class="product-price-detail">KSH 4,500</p>
+                    <p class="product-description">
+                        This exquisite gold necklace features a delicate chain with a beautifully crafted pendant. Made from 18K gold, this piece combines timeless elegance with modern design. Perfect for both casual and formal occasions, it adds a touch of sophistication to any outfit. The necklace is adjustable, allowing you to customize the length to your preference. Crafted with attention to detail, this piece is designed to be worn daily while maintaining its lustrous appearance.
+                    </p>
+                    <div class="product-features">
+                        <h3>Features</h3>
+                        <ul>
+                            <li>Made from 18K gold</li>
+                            <li>Adjustable chain length</li>
+                            <li>Hypoallergenic materials</li>
+                            <li>Secure clasp closure</li>
+                            <li>Water-resistant</li>
+                            <li>Comes with a velvet presentation box</li>
+                        </ul>
+                    </div>
+                    <div class="detail-actions">
+                        <button class="btn add-to-cart" data-id="1" data-name="Elegant Gold Necklace" data-price="4500" data-image="https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80">Add to Cart</button>
+                        <button class="btn whatsapp-inquiry" data-product="Elegant Gold Necklace">Ask About This Product</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product 2 Detail -->
+    <section class="product-detail" id="product-detail-2">
+        <div class="container">
+            <button class="back-btn" id="backBtn2">
+                <i class="fas fa-arrow-left"></i> Back to Products
+            </button>
+            <div class="product-detail-content">
+                <div class="product-gallery">
+                    <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Diamond Elegance Ring" class="main-image" id="mainImage2">
+                    <div class="thumbnail-container">
+                        <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Diamond Elegance Ring" class="thumbnail active" data-image="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80">
+                        <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Diamond Elegance Ring" class="thumbnail" data-image="https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80">
+                        <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Diamond Elegance Ring" class="thumbnail" data-image="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80">
+                    </div>
+                </div>
+                <div class="product-info-detail">
+                    <h1 class="product-title-detail">Diamond Elegance Ring</h1>
+                    <p class="product-price-detail">KSH 5,800</p>
+                    <p class="product-description">
+                        This stunning diamond ring features a brilliant-cut diamond set in an elegant gold band. The classic design makes it perfect for everyday wear or special occasions. Crafted with precision, this ring showcases the natural beauty of the diamond while providing maximum sparkle. The band is tapered for a delicate, feminine appearance, and the secure setting ensures your diamond stays in place. Each ring comes with a certificate of authenticity and is available in multiple sizes for the perfect fit.
+                    </p>
+                    <div class="product-features">
+                        <h3>Features</h3>
+                        <ul>
+                            <li>Brilliant-cut diamond</li>
+                            <li>18K gold band</li>
+                            <li>Available in multiple sizes</li>
+                            <li>Secure setting</li>
+                            <li>Comes with authenticity certificate</li>
+                            <li>Professional cleaning cloth included</li>
+                        </ul>
+                    </div>
+                    <div class="detail-actions">
+                        <button class="btn add-to-cart" data-id="2" data-name="Diamond Elegance Ring" data-price="5800" data-image="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80">Add to Cart</button>
+                        <button class="btn whatsapp-inquiry" data-product="Diamond Elegance Ring">Ask About This Product</button>
                     </div>
                 </div>
             </div>
@@ -753,6 +1036,14 @@
             </div>
         </div>
     </section>
+
+    <!-- WhatsApp AI Assistant Button -->
+    <div class="whatsapp-assistant">
+        <a href="https://wa.me/254712345678?text=Hi%20Vitamin%20Accessories!%20I%20need%20help%20with%20jewelry%20selection%20and%20advice." target="_blank" class="whatsapp-btn">
+            <i class="fab fa-whatsapp"></i>
+            <div class="whatsapp-tooltip">AI Jewelry Assistant</div>
+        </a>
+    </div>
 
     <!-- Cart Modal -->
     <div class="cart-modal" id="cartModal">
@@ -843,10 +1134,16 @@
         const cartItems = document.getElementById('cartItems');
         const totalPrice = document.getElementById('totalPrice');
         const cartCount = document.getElementById('cartCount');
-        const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+        const addToCartButtons = document.querySelectorAll('.add-to-cart-btn, .add-to-cart');
         const cartContent = document.getElementById('cartContent');
         const toast = document.getElementById('toast');
         const toastMessage = document.getElementById('toastMessage');
+        const productCards = document.querySelectorAll('.product-card');
+        const productDetailSections = document.querySelectorAll('.product-detail');
+        const productsSection = document.getElementById('shop');
+        const aboutSection = document.getElementById('about');
+        const footerSection = document.getElementById('contact');
+        const whatsappInquiryButtons = document.querySelectorAll('.whatsapp-inquiry');
 
         // Open cart modal
         cartIcon.addEventListener('click', () => {
@@ -994,6 +1291,87 @@
                 toast.classList.remove('show');
             }, 3000);
         }
+
+        // Product detail page functionality
+        productCards.forEach(card => {
+            card.addEventListener('click', (e) => {
+                // Don't trigger if clicking the add to cart button
+                if (e.target.classList.contains('add-to-cart-btn') || e.target.closest('.add-to-cart-btn')) {
+                    return;
+                }
+                
+                const productId = card.getAttribute('data-id');
+                showProductDetail(productId);
+            });
+        });
+
+        // Show product detail page
+        function showProductDetail(productId) {
+            // Hide other sections
+            productsSection.style.display = 'none';
+            aboutSection.style.display = 'none';
+            footerSection.style.display = 'none';
+            
+            // Hide all product detail sections
+            productDetailSections.forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Show the selected product detail section
+            const productDetailSection = document.getElementById(`product-detail-${productId}`);
+            productDetailSection.style.display = 'block';
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Back button functionality
+        document.getElementById('backBtn1').addEventListener('click', () => showMainPage());
+        document.getElementById('backBtn2').addEventListener('click', () => showMainPage());
+
+        // Show main page
+        function showMainPage() {
+            // Hide all product detail sections
+            productDetailSections.forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Show main sections
+            productsSection.style.display = 'block';
+            aboutSection.style.display = 'block';
+            footerSection.style.display = 'block';
+            
+            // Scroll to products section
+            productsSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Thumbnail functionality
+        document.querySelectorAll('.thumbnail').forEach(thumbnail => {
+            thumbnail.addEventListener('click', function() {
+                const mainImageId = this.closest('.product-gallery').querySelector('.main-image').id;
+                const mainImage = document.getElementById(mainImageId);
+                const newImageSrc = this.getAttribute('data-image');
+                
+                // Update main image
+                mainImage.src = newImageSrc;
+                
+                // Update active thumbnail
+                this.closest('.thumbnail-container').querySelectorAll('.thumbnail').forEach(thumb => {
+                    thumb.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+
+        // WhatsApp inquiry buttons
+        whatsappInquiryButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const productName = this.getAttribute('data-product');
+                const message = `Hi Vitamin Accessories! I'm interested in the ${productName}. Can you tell me more about it?`;
+                const encodedMessage = encodeURIComponent(message);
+                window.open(`https://wa.me/254712345678?text=${encodedMessage}`, '_blank');
+            });
+        });
 
         // M-Pesa button functionality
         document.querySelector('.mpesa-btn').addEventListener('click', function() {
