@@ -850,10 +850,10 @@
                 <div class="logo">Vitamin <span>Accessories</span></div>
                 <nav>
                     <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#shop">Shop</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#home" class="nav-link" data-section="home">Home</a></li>
+                        <li><a href="#shop" class="nav-link" data-section="shop">Shop</a></li>
+                        <li><a href="#about" class="nav-link" data-section="about">About</a></li>
+                        <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
                     </ul>
                 </nav>
                 <div class="cart-icon" id="cartIcon">
@@ -864,7 +864,7 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero Section - Only shown on homepage -->
     <section class="hero" id="home">
         <div class="container">
             <div class="hero-content">
@@ -1095,10 +1095,10 @@
                 <div class="footer-column">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#shop">Shop</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#home" class="nav-link" data-section="home">Home</a></li>
+                        <li><a href="#shop" class="nav-link" data-section="shop">Shop</a></li>
+                        <li><a href="#about" class="nav-link" data-section="about">About Us</a></li>
+                        <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -1140,10 +1140,12 @@
         const toastMessage = document.getElementById('toastMessage');
         const productCards = document.querySelectorAll('.product-card');
         const productDetailSections = document.querySelectorAll('.product-detail');
+        const heroSection = document.getElementById('home');
         const productsSection = document.getElementById('shop');
         const aboutSection = document.getElementById('about');
         const footerSection = document.getElementById('contact');
         const whatsappInquiryButtons = document.querySelectorAll('.whatsapp-inquiry');
+        const navLinks = document.querySelectorAll('.nav-link');
 
         // Open cart modal
         cartIcon.addEventListener('click', () => {
@@ -1307,7 +1309,8 @@
 
         // Show product detail page
         function showProductDetail(productId) {
-            // Hide other sections
+            // Hide other sections including hero
+            heroSection.style.display = 'none';
             productsSection.style.display = 'none';
             aboutSection.style.display = 'none';
             footerSection.style.display = 'none';
@@ -1336,7 +1339,8 @@
                 section.style.display = 'none';
             });
             
-            // Show main sections
+            // Show main sections including hero
+            heroSection.style.display = 'flex';
             productsSection.style.display = 'block';
             aboutSection.style.display = 'block';
             footerSection.style.display = 'block';
@@ -1344,6 +1348,28 @@
             // Scroll to products section
             productsSection.scrollIntoView({ behavior: 'smooth' });
         }
+
+        // Navigation functionality
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const section = link.getAttribute('data-section');
+                
+                // Hide all product detail sections
+                productDetailSections.forEach(section => {
+                    section.style.display = 'none';
+                });
+                
+                // Show main sections including hero
+                heroSection.style.display = section === 'home' ? 'flex' : 'none';
+                productsSection.style.display = 'block';
+                aboutSection.style.display = 'block';
+                footerSection.style.display = 'block';
+                
+                // Scroll to the selected section
+                document.getElementById(section).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
 
         // Thumbnail functionality
         document.querySelectorAll('.thumbnail').forEach(thumbnail => {
