@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Vitamin Accessories - Luxury Jewelry</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -13,10 +13,15 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             background-color: #000;
             color: #D4AF37;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         .container {
@@ -25,14 +30,52 @@
             padding: 0 20px;
         }
 
+        /* Parallax Sections */
+        .parallax-section {
+            position: relative;
+            overflow: hidden;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .parallax-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+
+        .parallax-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+        }
+
         /* Header & Navigation */
         header {
             background-color: rgba(0, 0, 0, 0.9);
             padding: 20px 0;
-            position: sticky;
+            position: fixed;
             top: 0;
-            z-index: 100;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
             border-bottom: 1px solid #D4AF37;
+            transition: all 0.5s ease;
+        }
+
+        header.scrolled {
+            padding: 10px 0;
+            background-color: rgba(0, 0, 0, 0.95);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
         }
 
         .header-content {
@@ -47,6 +90,9 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             color: #D4AF37;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeInDown 1s ease forwards;
         }
 
         .logo span {
@@ -60,7 +106,15 @@
 
         nav ul li {
             margin-left: 30px;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeInDown 1s ease forwards;
         }
+
+        nav ul li:nth-child(1) { animation-delay: 0.2s; }
+        nav ul li:nth-child(2) { animation-delay: 0.3s; }
+        nav ul li:nth-child(3) { animation-delay: 0.4s; }
+        nav ul li:nth-child(4) { animation-delay: 0.5s; }
 
         nav ul li a {
             color: #D4AF37;
@@ -68,10 +122,26 @@
             font-size: 18px;
             font-weight: 500;
             transition: color 0.3s;
+            position: relative;
+        }
+
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #D4AF37;
+            transition: width 0.3s ease;
         }
 
         nav ul li a:hover {
             color: #fff;
+        }
+
+        nav ul li a:hover:after {
+            width: 100%;
         }
 
         .cart-icon {
@@ -79,6 +149,9 @@
             margin-left: 30px;
             cursor: pointer;
             position: relative;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeInDown 1s ease 0.6s forwards;
         }
 
         .cart-count {
@@ -99,31 +172,35 @@
 
         /* Hero Section */
         .hero {
-            height: 80vh;
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
-            background-size: cover;
+            background-attachment: fixed;
             background-position: center;
-            display: flex;
-            align-items: center;
-            text-align: center;
+            background-size: cover;
         }
 
         .hero-content {
             max-width: 800px;
             margin: 0 auto;
+            text-align: center;
         }
 
         .hero h1 {
-            font-size: 48px;
+            font-size: 72px;
             margin-bottom: 20px;
             text-transform: uppercase;
             letter-spacing: 3px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1.5s ease 0.5s forwards;
         }
 
         .hero p {
-            font-size: 20px;
+            font-size: 24px;
             margin-bottom: 30px;
             color: #fff;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1.5s ease 0.8s forwards;
         }
 
         .btn {
@@ -138,24 +215,37 @@
             text-decoration: none;
             transition: all 0.3s;
             cursor: pointer;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1.5s ease 1.1s forwards;
         }
 
         .btn:hover {
             background-color: #fff;
             transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
         }
 
         /* Products Section */
         .products {
-            padding: 80px 0;
+            padding: 100px 0;
+            background-color: #000;
         }
 
         .section-title {
             text-align: center;
-            font-size: 36px;
-            margin-bottom: 50px;
+            font-size: 48px;
+            margin-bottom: 70px;
             text-transform: uppercase;
             letter-spacing: 2px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .section-title.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .products-grid {
@@ -168,20 +258,34 @@
             background-color: #111;
             border-radius: 10px;
             overflow: hidden;
-            transition: transform 0.3s;
+            transition: transform 0.5s, box-shadow 0.5s;
             border: 1px solid #333;
             cursor: pointer;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
+
+        .product-card.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .product-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-15px) scale(1.03);
             border-color: #D4AF37;
+            box-shadow: 0 20px 30px rgba(212, 175, 55, 0.2);
         }
 
         .product-img {
             height: 250px;
             width: 100%;
             object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .product-card:hover .product-img {
+            transform: scale(1.1);
         }
 
         .product-info {
@@ -199,10 +303,122 @@
             margin-bottom: 15px;
         }
 
+        /* About Section */
+        .about {
+            padding: 100px 0;
+            background-color: #111;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80');
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-img {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease;
+        }
+
+        .about-img.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .about-img img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: transform 0.8s;
+        }
+
+        .about-img:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-text {
+            flex: 1;
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease;
+        }
+
+        .about-text.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .about-text h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: #fff;
+            font-size: 18px;
+        }
+
+        /* Parallax Quote Section */
+        .quote-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1588444650700-6c7f0c89d36b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80');
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+            text-align: center;
+            padding: 120px 0;
+        }
+
+        .quote {
+            font-size: 36px;
+            font-style: italic;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #fff;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .quote.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .author {
+            margin-top: 30px;
+            font-size: 20px;
+            color: #D4AF37;
+        }
+
         /* Product Detail Page */
         .product-detail {
             display: none;
-            padding: 80px 0;
+            padding: 100px 0;
+            background-color: #000;
         }
 
         .back-btn {
@@ -215,10 +431,12 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            transition: all 0.3s;
         }
 
         .back-btn:hover {
             color: #fff;
+            transform: translateX(-5px);
         }
 
         .product-detail-content {
@@ -236,6 +454,11 @@
             object-fit: cover;
             border-radius: 10px;
             margin-bottom: 20px;
+            transition: transform 0.5s;
+        }
+
+        .main-image:hover {
+            transform: scale(1.02);
         }
 
         .thumbnail-container {
@@ -250,12 +473,13 @@
             border-radius: 5px;
             cursor: pointer;
             opacity: 0.7;
-            transition: opacity 0.3s;
+            transition: all 0.3s;
         }
 
         .thumbnail:hover, .thumbnail.active {
             opacity: 1;
             border: 2px solid #D4AF37;
+            transform: scale(1.1);
         }
 
         .product-info-detail {
@@ -265,12 +489,18 @@
         .product-title-detail {
             font-size: 32px;
             margin-bottom: 15px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards;
         }
 
         .product-price-detail {
             font-size: 24px;
             color: #fff;
             margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease 0.2s forwards;
         }
 
         .product-description {
@@ -278,10 +508,16 @@
             margin-bottom: 30px;
             font-size: 18px;
             line-height: 1.8;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease 0.4s forwards;
         }
 
         .product-features {
             margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease 0.6s forwards;
         }
 
         .product-features h3 {
@@ -330,6 +566,14 @@
             border: 2px solid #D4AF37;
             max-height: 80vh;
             overflow-y: auto;
+            transform: scale(0.9);
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+
+        .cart-content.show {
+            transform: scale(1);
+            opacity: 1;
         }
 
         .cart-header {
@@ -352,6 +596,12 @@
             color: #D4AF37;
             font-size: 24px;
             cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .close-cart:hover {
+            color: #fff;
+            transform: rotate(90deg);
         }
 
         .cart-items {
@@ -364,6 +614,14 @@
             align-items: center;
             padding: 15px 0;
             border-bottom: 1px solid #333;
+            transition: all 0.3s;
+        }
+
+        .cart-item:hover {
+            background-color: rgba(212, 175, 55, 0.1);
+            border-radius: 5px;
+            padding-left: 10px;
+            padding-right: 10px;
         }
 
         .item-info {
@@ -404,6 +662,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .quantity-btn:hover {
+            background-color: #fff;
+            transform: scale(1.1);
         }
 
         .quantity {
@@ -418,6 +682,12 @@
             cursor: pointer;
             font-size: 18px;
             margin-left: 15px;
+            transition: all 0.3s;
+        }
+
+        .remove-item:hover {
+            color: #ff0000;
+            transform: scale(1.2);
         }
 
         .cart-total {
@@ -467,6 +737,7 @@
 
         .checkout-btn:hover {
             background-color: #fff;
+            transform: translateY(-3px);
         }
 
         .mpesa-btn {
@@ -476,6 +747,7 @@
 
         .mpesa-btn:hover {
             background-color: #008C42;
+            transform: translateY(-3px);
         }
 
         .mpesa-logo {
@@ -483,49 +755,10 @@
             font-size: 18px;
         }
 
-        /* About Section */
-        .about {
-            padding: 80px 0;
-            background-color: #111;
-        }
-
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 50px;
-        }
-
-        .about-img {
-            flex: 1;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .about-img img {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-        }
-
-        .about-text {
-            flex: 1;
-        }
-
-        .about-text h2 {
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
-
-        .about-text p {
-            margin-bottom: 20px;
-            color: #fff;
-            font-size: 18px;
-        }
-
         /* Footer */
         footer {
             background-color: #111;
-            padding: 50px 0 20px;
+            padding: 80px 0 20px;
             border-top: 1px solid #D4AF37;
         }
 
@@ -569,11 +802,20 @@
         .social-icons a {
             color: #D4AF37;
             font-size: 20px;
-            transition: color 0.3s;
+            transition: all 0.3s;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #222;
         }
 
         .social-icons a:hover {
             color: #fff;
+            background-color: #D4AF37;
+            transform: translateY(-5px);
         }
 
         .copyright {
@@ -581,6 +823,62 @@
             padding-top: 20px;
             border-top: 1px solid #333;
             color: #fff;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Floating Animation */
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
         }
 
         /* Responsive Design */
@@ -599,7 +897,11 @@
             }
 
             .hero h1 {
-                font-size: 36px;
+                font-size: 48px;
+            }
+
+            .hero p {
+                font-size: 20px;
             }
 
             .about-content {
@@ -631,12 +933,30 @@
             .payment-options {
                 flex-direction: column;
             }
+
+            .quote {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .quote {
+                font-size: 22px;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Header -->
-    <header>
+    <header id="header">
         <div class="container">
             <div class="header-content">
                 <div class="logo">Vitamin <span>Accessories</span></div>
@@ -657,12 +977,15 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero" id="home">
+    <section class="parallax-section hero" id="home">
+        <div class="parallax-overlay"></div>
         <div class="container">
-            <div class="hero-content">
-                <h1>Elegance in Every Detail</h1>
-                <p>Discover our exclusive collection of handcrafted jewelry that complements your style</p>
-                <a href="#shop" class="btn">Shop Now</a>
+            <div class="parallax-content">
+                <div class="hero-content">
+                    <h1>Elegance in Every Detail</h1>
+                    <p>Discover our exclusive collection of handcrafted jewelry that complements your style</p>
+                    <a href="#shop" class="btn">Shop Now</a>
+                </div>
             </div>
         </div>
     </section>
@@ -715,150 +1038,14 @@
         </div>
     </section>
 
-    <!-- Product Detail Pages -->
-    <!-- Product 1 Detail -->
-    <section class="product-detail" id="product-detail-1">
+    <!-- Quote Section -->
+    <section class="parallax-section quote-section">
+        <div class="parallax-overlay"></div>
         <div class="container">
-            <button class="back-btn" id="backBtn1">
-                <i class="fas fa-arrow-left"></i> Back to Products
-            </button>
-            <div class="product-detail-content">
-                <div class="product-gallery">
-                    <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Elegant Gold Necklace" class="main-image" id="mainImage1">
-                    <div class="thumbnail-container">
-                        <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Elegant Gold Necklace" class="thumbnail active" data-image="https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80">
-                        <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Elegant Gold Necklace" class="thumbnail" data-image="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80">
-                        <img src="https://images.unsplash.com/photo-1596944946755-63b77bf5ffc8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Elegant Gold Necklace" class="thumbnail" data-image="https://images.unsplash.com/photo-1596944946755-63b77bf5ffc8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80">
-                    </div>
-                </div>
-                <div class="product-info-detail">
-                    <h1 class="product-title-detail">Elegant Gold Necklace</h1>
-                    <p class="product-price-detail">KSH 4,500</p>
-                    <p class="product-description">
-                        This exquisite gold necklace features a delicate chain with a beautifully crafted pendant. Made from 18K gold, this piece combines timeless elegance with modern design. Perfect for both casual and formal occasions, it adds a touch of sophistication to any outfit.
-                    </p>
-                    <div class="product-features">
-                        <h3>Features</h3>
-                        <ul>
-                            <li>Made from 18K gold</li>
-                            <li>Adjustable chain length</li>
-                            <li>Hypoallergenic materials</li>
-                            <li>Secure clasp closure</li>
-                            <li>Water-resistant</li>
-                        </ul>
-                    </div>
-                    <button class="btn add-to-cart" data-id="1" data-name="Elegant Gold Necklace" data-price="4500" data-image="https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80">Add to Cart</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Product 2 Detail -->
-    <section class="product-detail" id="product-detail-2">
-        <div class="container">
-            <button class="back-btn" id="backBtn2">
-                <i class="fas fa-arrow-left"></i> Back to Products
-            </button>
-            <div class="product-detail-content">
-                <div class="product-gallery">
-                    <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Diamond Elegance Ring" class="main-image" id="mainImage2">
-                    <div class="thumbnail-container">
-                        <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Diamond Elegance Ring" class="thumbnail active" data-image="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80">
-                        <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Diamond Elegance Ring" class="thumbnail" data-image="https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80">
-                        <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Diamond Elegance Ring" class="thumbnail" data-image="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80">
-                    </div>
-                </div>
-                <div class="product-info-detail">
-                    <h1 class="product-title-detail">Diamond Elegance Ring</h1>
-                    <p class="product-price-detail">KSH 5,800</p>
-                    <p class="product-description">
-                        This stunning diamond ring features a brilliant-cut diamond set in a elegant gold band. The classic design makes it perfect for everyday wear or special occasions. Crafted with precision, this ring showcases the natural beauty of the diamond while providing maximum sparkle.
-                    </p>
-                    <div class="product-features">
-                        <h3>Features</h3>
-                        <ul>
-                            <li>Brilliant-cut diamond</li>
-                            <li>18K gold band</li>
-                            <li>Available in multiple sizes</li>
-                            <li>Secure setting</li>
-                            <li>Comes with authenticity certificate</li>
-                        </ul>
-                    </div>
-                    <button class="btn add-to-cart" data-id="2" data-name="Diamond Elegance Ring" data-price="5800" data-image="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80">Add to Cart</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Product 3 Detail -->
-    <section class="product-detail" id="product-detail-3">
-        <div class="container">
-            <button class="back-btn" id="backBtn3">
-                <i class="fas fa-arrow-left"></i> Back to Products
-            </button>
-            <div class="product-detail-content">
-                <div class="product-gallery">
-                    <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Golden Dangle Earrings" class="main-image" id="mainImage3">
-                    <div class="thumbnail-container">
-                        <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Golden Dangle Earrings" class="thumbnail active" data-image="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80">
-                        <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Golden Dangle Earrings" class="thumbnail" data-image="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80">
-                        <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Golden Dangle Earrings" class="thumbnail" data-image="https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80">
-                    </div>
-                </div>
-                <div class="product-info-detail">
-                    <h1 class="product-title-detail">Golden Dangle Earrings</h1>
-                    <p class="product-price-detail">KSH 3,200</p>
-                    <p class="product-description">
-                        These elegant dangle earrings feature a sophisticated design that adds movement and sparkle to your look. Crafted from high-quality gold, they are lightweight yet durable. The perfect accessory to elevate any outfit, from casual daytime wear to evening elegance.
-                    </p>
-                    <div class="product-features">
-                        <h3>Features</h3>
-                        <ul>
-                            <li>Lightweight design</li>
-                            <li>Hypoallergenic materials</li>
-                            <li>Secure butterfly backs</li>
-                            <li>Easy to wear all day</li>
-                            <li>Perfect for sensitive ears</li>
-                        </ul>
-                    </div>
-                    <button class="btn add-to-cart" data-id="3" data-name="Golden Dangle Earrings" data-price="3200" data-image="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80">Add to Cart</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Product 4 Detail -->
-    <section class="product-detail" id="product-detail-4">
-        <div class="container">
-            <button class="back-btn" id="backBtn4">
-                <i class="fas fa-arrow-left"></i> Back to Products
-            </button>
-            <div class="product-detail-content">
-                <div class="product-gallery">
-                    <img src="https://images.unsplash.com/photo-1588444650700-6c7f0c89d36b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Delicate Gold Bracelet" class="main-image" id="mainImage4">
-                    <div class="thumbnail-container">
-                        <img src="https://images.unsplash.com/photo-1588444650700-6c7f0c89d36b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Delicate Gold Bracelet" class="thumbnail active" data-image="https://images.unsplash.com/photo-1588444650700-6c7f0c89d36b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80">
-                        <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Delicate Gold Bracelet" class="thumbnail" data-image="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80">
-                        <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Delicate Gold Bracelet" class="thumbnail" data-image="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80">
-                    </div>
-                </div>
-                <div class="product-info-detail">
-                    <h1 class="product-title-detail">Delicate Gold Bracelet</h1>
-                    <p class="product-price-detail">KSH 4,200</p>
-                    <p class="product-description">
-                        This delicate gold bracelet features a fine chain with subtle details that catch the light beautifully. Its minimalist design makes it versatile enough to wear alone or layered with other bracelets. Crafted with attention to detail, this piece adds a touch of elegance to any wrist.
-                    </p>
-                    <div class="product-features">
-                        <h3>Features</h3>
-                        <ul>
-                            <li>Adjustable length</li>
-                            <li>Secure clasp closure</li>
-                            <li>Hypoallergenic materials</li>
-                            <li>Perfect for layering</li>
-                            <li>Water-resistant</li>
-                        </ul>
-                    </div>
-                    <button class="btn add-to-cart" data-id="4" data-name="Delicate Gold Bracelet" data-price="4200" data-image="https://images.unsplash.com/photo-1588444650700-6c7f0c89d36b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80">Add to Cart</button>
+            <div class="parallax-content">
+                <div class="quote">
+                    "Jewelry is like the perfect spice - it always complements what's already there."
+                    <div class="author">- Diane Von Furstenberg</div>
                 </div>
             </div>
         </div>
@@ -867,7 +1054,6 @@
     <!-- About Section -->
     <section class="about" id="about">
         <div class="container">
-            <h2 class="section-title">About Vitamin Accessories</h2>
             <div class="about-content">
                 <div class="about-img">
                     <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="About Vitamin Accessories">
@@ -882,33 +1068,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Cart Modal -->
-    <div class="cart-modal" id="cartModal">
-        <div class="cart-content">
-            <div class="cart-header">
-                <h2 class="cart-title">Your Shopping Cart</h2>
-                <button class="close-cart" id="closeCart">&times;</button>
-            </div>
-            <div class="cart-items" id="cartItems">
-                <!-- Cart items will be dynamically added here -->
-                <p class="empty-cart-message">Your cart is empty</p>
-            </div>
-            <div class="cart-total">
-                Total: <span class="total-price" id="totalPrice">KSH 0</span>
-            </div>
-            <div class="checkout-section">
-                <h3>Payment Method</h3>
-                <div class="payment-options">
-                    <button class="payment-btn checkout-btn">Standard Checkout</button>
-                    <button class="payment-btn mpesa-btn">
-                        <span class="mpesa-logo">M-PESA</span>
-                        <i class="fas fa-mobile-alt"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Footer -->
     <footer id="contact">
@@ -957,6 +1116,33 @@
         </div>
     </footer>
 
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content" id="cartContent">
+            <div class="cart-header">
+                <h2 class="cart-title">Your Shopping Cart</h2>
+                <button class="close-cart" id="closeCart">&times;</button>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <!-- Cart items will be dynamically added here -->
+                <p class="empty-cart-message">Your cart is empty</p>
+            </div>
+            <div class="cart-total">
+                Total: <span class="total-price" id="totalPrice">KSH 0</span>
+            </div>
+            <div class="checkout-section">
+                <h3>Payment Method</h3>
+                <div class="payment-options">
+                    <button class="payment-btn checkout-btn">Standard Checkout</button>
+                    <button class="payment-btn mpesa-btn">
+                        <span class="mpesa-logo">M-PESA</span>
+                        <i class="fas fa-mobile-alt"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Shopping Cart Functionality
         let cart = [];
@@ -968,25 +1154,32 @@
         const cartCount = document.getElementById('cartCount');
         const addToCartButtons = document.querySelectorAll('.add-to-cart');
         const productCards = document.querySelectorAll('.product-card');
-        const productDetailSections = document.querySelectorAll('.product-detail');
-        const productsSection = document.getElementById('shop');
-        const aboutSection = document.getElementById('about');
-        const footerSection = document.getElementById('contact');
+        const header = document.getElementById('header');
+        const cartContent = document.getElementById('cartContent');
 
         // Open cart modal
         cartIcon.addEventListener('click', () => {
             cartModal.style.display = 'flex';
+            setTimeout(() => {
+                cartContent.classList.add('show');
+            }, 10);
         });
 
         // Close cart modal
         closeCart.addEventListener('click', () => {
-            cartModal.style.display = 'none';
+            cartContent.classList.remove('show');
+            setTimeout(() => {
+                cartModal.style.display = 'none';
+            }, 300);
         });
 
         // Close modal when clicking outside
         window.addEventListener('click', (e) => {
             if (e.target === cartModal) {
-                cartModal.style.display = 'none';
+                cartContent.classList.remove('show');
+                setTimeout(() => {
+                    cartModal.style.display = 'none';
+                }, 300);
             }
         });
 
@@ -1112,76 +1305,76 @@
             }, 3000);
         }
 
-        // Product detail page functionality
-        productCards.forEach(card => {
-            card.addEventListener('click', (e) => {
-                // Don't trigger if clicking the add to cart button
-                if (e.target.classList.contains('btn') || e.target.classList.contains('add-to-cart')) {
-                    return;
+        // Scroll animations
+        function checkScroll() {
+            // Header scroll effect
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+
+            // Section title animation
+            const sectionTitle = document.querySelector('.section-title');
+            if (sectionTitle) {
+                const sectionTitlePosition = sectionTitle.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (sectionTitlePosition < screenPosition) {
+                    sectionTitle.classList.add('animate');
                 }
-                
-                const productId = card.getAttribute('data-id');
-                showProductDetail(productId);
-            });
-        });
+            }
 
-        // Show product detail page
-        function showProductDetail(productId) {
-            // Hide other sections
-            productsSection.style.display = 'none';
-            aboutSection.style.display = 'none';
-            footerSection.style.display = 'none';
-            
-            // Hide all product detail sections
-            productDetailSections.forEach(section => {
-                section.style.display = 'none';
+            // Product cards animation
+            const productCards = document.querySelectorAll('.product-card');
+            productCards.forEach(card => {
+                const cardPosition = card.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (cardPosition < screenPosition) {
+                    card.classList.add('animate');
+                }
             });
+
+            // About section animation
+            const aboutImg = document.querySelector('.about-img');
+            const aboutText = document.querySelector('.about-text');
             
-            // Show the selected product detail section
-            const productDetailSection = document.getElementById(`product-detail-${productId}`);
-            productDetailSection.style.display = 'block';
-            
-            // Scroll to top
-            window.scrollTo(0, 0);
+            if (aboutImg && aboutText) {
+                const aboutPosition = aboutImg.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (aboutPosition < screenPosition) {
+                    aboutImg.classList.add('animate');
+                    aboutText.classList.add('animate');
+                }
+            }
+
+            // Quote animation
+            const quote = document.querySelector('.quote');
+            if (quote) {
+                const quotePosition = quote.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (quotePosition < screenPosition) {
+                    quote.classList.add('animate');
+                }
+            }
         }
 
-        // Back button functionality
-        document.getElementById('backBtn1').addEventListener('click', () => showMainPage());
-        document.getElementById('backBtn2').addEventListener('click', () => showMainPage());
-        document.getElementById('backBtn3').addEventListener('click', () => showMainPage());
-        document.getElementById('backBtn4').addEventListener('click', () => showMainPage());
+        // Add scroll event listener
+        window.addEventListener('scroll', checkScroll);
+        
+        // Initial check on page load
+        window.addEventListener('load', checkScroll);
 
-        // Show main page
-        function showMainPage() {
-            // Hide all product detail sections
-            productDetailSections.forEach(section => {
-                section.style.display = 'none';
-            });
-            
-            // Show main sections
-            productsSection.style.display = 'block';
-            aboutSection.style.display = 'block';
-            footerSection.style.display = 'block';
-            
-            // Scroll to products section
-            productsSection.scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // Thumbnail functionality
-        document.querySelectorAll('.thumbnail').forEach(thumbnail => {
-            thumbnail.addEventListener('click', function() {
-                const mainImageId = this.closest('.product-gallery').querySelector('.main-image').id;
-                const mainImage = document.getElementById(mainImageId);
-                const newImageSrc = this.getAttribute('data-image');
-                
-                // Update main image
-                mainImage.src = newImageSrc;
-                
-                // Update active thumbnail
-                this.closest('.thumbnail-container').querySelectorAll('.thumbnail').forEach(thumb => {
-                    thumb.classList.remove('active');
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
                 });
-                this.classList.add('active');
             });
         });
 
@@ -1207,14 +1400,9 @@
             alert(`Proceeding to checkout with total: KSH ${total}`);
         });
 
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
+        // Add floating animation to some elements
+        document.querySelectorAll('.product-card, .btn').forEach(el => {
+            el.classList.add('floating');
         });
     </script>
 </body>
