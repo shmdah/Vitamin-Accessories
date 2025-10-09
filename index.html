@@ -4,42 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vitamin Accessories - Luxury Jewelry</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --dark-bg: #0f0f0f;
-            --gold: #d4af37;
-            --light-text: #f5f5f5;
-            --gray-text: #aaaaaa;
-            --card-bg: #1a1a1a;
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--dark-bg);
-            color: var(--light-text);
+            background-color: #000;
+            color: #D4AF37;
             line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
         }
 
         .container {
@@ -48,171 +25,120 @@
             padding: 0 20px;
         }
 
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(15, 15, 15, 0.85);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
+        /* Header & Navigation */
+        header {
+            background-color: rgba(0, 0, 0, 0.9);
             padding: 20px 0;
-            transition: all 0.3s ease;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #D4AF37;
         }
 
-        .nav-container {
+        .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 24px;
-            font-weight: 600;
-            color: var(--gold);
+            font-size: 28px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #D4AF37;
         }
 
-        .nav-links {
+        .logo span {
+            color: #fff;
+        }
+
+        nav ul {
             display: flex;
-            gap: 30px;
+            list-style: none;
         }
 
-        .nav-links a {
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            color: #D4AF37;
+            text-decoration: none;
+            font-size: 18px;
             font-weight: 500;
-            position: relative;
-            transition: color 0.3s ease;
+            transition: color 0.3s;
         }
 
-        .nav-links a:hover {
-            color: var(--gold);
+        nav ul li a:hover {
+            color: #fff;
         }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--gold);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--light-text);
-            font-size: 24px;
+        .cart-icon {
+            font-size: 22px;
+            margin-left: 30px;
             cursor: pointer;
         }
 
-        /* Hero Section with Video */
+        /* Hero Section */
         .hero {
-            height: 100vh;
-            position: relative;
+            height: 80vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
             display: flex;
             align-items: center;
-            justify-content: center;
             text-align: center;
-            overflow: hidden;
-        }
-
-        .video-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-        }
-
-        .video-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(15, 15, 15, 0.6);
-            z-index: -1;
         }
 
         .hero-content {
             max-width: 800px;
-            padding: 0 20px;
-            z-index: 1;
+            margin: 0 auto;
         }
 
         .hero h1 {
-            font-size: 4rem;
+            font-size: 48px;
             margin-bottom: 20px;
-            color: var(--gold);
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 3px;
         }
 
         .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 40px;
-            color: var(--light-text);
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
-        }
-
-        .hero-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
+            font-size: 20px;
+            margin-bottom: 30px;
+            color: #fff;
         }
 
         .btn {
-            padding: 12px 30px;
-            border-radius: 30px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
             display: inline-block;
+            background-color: #D4AF37;
+            color: #000;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
         }
 
-        .btn-primary {
-            background-color: var(--gold);
-            color: var(--dark-bg);
-        }
-
-        .btn-primary:hover {
-            background-color: #e6c158;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
-        }
-
-        .btn-secondary {
-            border: 1px solid var(--gold);
-            color: var(--gold);
-        }
-
-        .btn-secondary:hover {
-            background-color: rgba(212, 175, 55, 0.1);
-            transform: translateY(-2px);
+        .btn:hover {
+            background-color: #fff;
+            transform: translateY(-3px);
         }
 
         /* Products Section */
-        .section {
-            padding: 100px 0;
+        .products {
+            padding: 80px 0;
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 60px;
-            font-size: 2.5rem;
-            color: var(--gold);
+            font-size: 36px;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         .products-grid {
@@ -222,198 +148,121 @@
         }
 
         .product-card {
-            background-color: var(--card-bg);
+            background-color: #111;
             border-radius: 10px;
             overflow: hidden;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            border: 1px solid #333;
         }
 
         .product-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            border-color: #D4AF37;
         }
 
-        .product-image {
+        .product-img {
             height: 250px;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .product-image::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, transparent, rgba(15, 15, 15, 0.7));
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .product-card:hover .product-image::after {
-            opacity: 1;
+            object-fit: cover;
         }
 
         .product-info {
             padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
 
-        .product-name {
-            font-size: 1.2rem;
+        .product-title {
+            font-size: 20px;
             margin-bottom: 10px;
-            color: var(--light-text);
-            text-align: center;
         }
 
         .product-price {
-            color: var(--gold);
-            font-weight: 500;
+            font-size: 18px;
+            color: #fff;
             margin-bottom: 15px;
         }
 
-        /* About Section */
-        .about-section {
-            display: flex;
-            align-items: center;
-            gap: 50px;
-            margin-bottom: 100px;
+        .price-range {
+            text-align: center;
+            font-size: 24px;
+            margin-top: 40px;
+            color: #fff;
         }
 
-        .about-image {
-            flex: 1;
-            height: 500px;
-            background: url('https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2067&q=80') center/cover;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background-color: #111;
         }
 
         .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-img {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .about-img img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .about-text {
             flex: 1;
         }
 
-        .about-content h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: var(--gold);
-        }
-
-        .about-content p {
-            margin-bottom: 20px;
-            color: var(--gray-text);
-        }
-
-        /* Contact Section */
-        .contact-section {
-            background-color: var(--card-bg);
-            border-radius: 10px;
-            padding: 60px;
-            max-width: 800px;
-            margin: 0 auto;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .form-group label {
-            font-weight: 500;
-            color: var(--gray-text);
-        }
-
-        .form-group input,
-        .form-group textarea {
-            padding: 12px 15px;
-            border: 1px solid #333;
-            border-radius: 5px;
-            background-color: #2a2a2a;
-            color: var(--light-text);
-            font-family: 'Poppins', sans-serif;
-            transition: all 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--gold);
-            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
-        }
-
-        .submit-btn {
-            background-color: var(--gold);
-            color: var(--dark-bg);
-            border: none;
-            padding: 15px;
-            border-radius: 5px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 10px;
-        }
-
-        .submit-btn:hover {
-            background-color: #e6c158;
-        }
-
-        .store-info {
-            margin-top: 40px;
-            text-align: center;
-        }
-
-        .store-info h3 {
-            color: var(--gold);
+        .about-text h2 {
+            font-size: 36px;
             margin-bottom: 20px;
         }
 
-        .store-info p {
-            margin-bottom: 10px;
-            color: var(--gray-text);
+        .about-text p {
+            margin-bottom: 20px;
+            color: #fff;
+            font-size: 18px;
         }
 
         /* Footer */
         footer {
-            background-color: #0a0a0a;
-            padding: 60px 0 30px;
-            margin-top: 100px;
+            background-color: #111;
+            padding: 50px 0 20px;
+            border-top: 1px solid #D4AF37;
         }
 
         .footer-content {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 40px;
             margin-bottom: 40px;
         }
 
-        .footer-column {
-            flex: 1;
-            min-width: 200px;
-        }
-
         .footer-column h3 {
-            color: var(--gold);
+            font-size: 22px;
             margin-bottom: 20px;
-            font-size: 1.2rem;
+            color: #fff;
         }
 
-        .footer-column p {
-            color: var(--gray-text);
-            margin-bottom: 15px;
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #D4AF37;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: #fff;
         }
 
         .social-icons {
@@ -423,477 +272,210 @@
         }
 
         .social-icons a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: #2a2a2a;
-            transition: all 0.3s ease;
+            color: #D4AF37;
+            font-size: 20px;
+            transition: color 0.3s;
         }
 
         .social-icons a:hover {
-            background-color: var(--gold);
-            color: var(--dark-bg);
-            transform: translateY(-3px);
+            color: #fff;
         }
 
         .copyright {
             text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid #2a2a2a;
-            color: var(--gray-text);
-            font-size: 0.9rem;
-        }
-
-        /* Modal for product details */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-content {
-            background-color: var(--card-bg);
-            padding: 40px;
-            border-radius: 10px;
-            max-width: 600px;
-            width: 90%;
-            position: relative;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 24px;
-            cursor: pointer;
-            color: var(--gray-text);
-            transition: color 0.3s ease;
-        }
-
-        .close-modal:hover {
-            color: var(--gold);
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            color: #fff;
         }
 
         /* Responsive Design */
-        @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 3rem;
-            }
-            
-            .contact-section {
-                padding: 40px;
-            }
-            
-            .about-section {
-                flex-direction: column;
-            }
-            
-            .about-image {
-                width: 100%;
-            }
-        }
-
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                background-color: var(--dark-bg);
+            .header-content {
                 flex-direction: column;
-                padding: 20px;
                 text-align: center;
-                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
             }
-            
-            .nav-links.active {
-                display: flex;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .btn {
-                width: 200px;
-            }
-            
-            .footer-content {
-                flex-direction: column;
-            }
-        }
 
-        @media (max-width: 576px) {
+            nav ul {
+                margin-top: 20px;
+            }
+
+            nav ul li {
+                margin: 0 10px;
+            }
+
             .hero h1 {
-                font-size: 2rem;
+                font-size: 36px;
             }
-            
-            .section-title {
-                font-size: 2rem;
+
+            .about-content {
+                flex-direction: column;
             }
-            
-            .contact-section {
-                padding: 30px 20px;
+
+            .about-img, .about-text {
+                flex: none;
+                width: 100%;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="container nav-container">
-            <a href="#" class="logo">Vitamin Accessories</a>
-            <div class="nav-links">
-                <a href="#home">Home</a>
-                <a href="#products">Collections</a>
-                <a href="#about">Our Story</a>
-                <a href="#contact">Contact</a>
-            </div>
-            <button class="mobile-menu-btn">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-    </nav>
-
-    <!-- Home/Hero Section with Video -->
-    <section class="hero" id="home">
-        <video autoplay muted loop class="video-background">
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-woman-wearing-gold-jewelry-41733-large.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <div class="video-overlay"></div>
-        <div class="hero-content">
-            <h1>Delicate Jewelry</h1>
-            <p>These jewelry pieces will be unforgettable gifts that preserve wonderful moments for many years.</p>
-            <div class="hero-buttons">
-                <a href="#products" class="btn btn-primary">Explore Collection</a>
-                <a href="#about" class="btn btn-secondary">Our Craftsmanship</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="section" id="about">
+    <!-- Header -->
+    <header>
         <div class="container">
-            <div class="about-section">
-                <div class="about-image"></div>
-                <div class="about-content">
-                    <h2>Our Story</h2>
-                    <p>Founded in 2015, Vitamin Accessories began as a small boutique in Nairobi with a vision to create jewelry that tells a story. Each piece is meticulously crafted by our skilled artisans, combining traditional techniques with contemporary design.</p>
-                    <p>Our name "Vitamin" reflects our belief that beautiful accessories are essential to personal expression - just like vitamins are essential to health.</p>
-                    <p>We source only the finest materials, from ethically-mined gemstones to recycled precious metals, ensuring our creations are as responsible as they are beautiful.</p>
-                    <a href="#contact" class="btn btn-primary" style="margin-top: 20px;">Visit Our Atelier</a>
+            <div class="header-content">
+                <div class="logo">Vitamin <span>Accessories</span></div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#shop">Shop</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="cart-icon">
+                    <i class="fas fa-shopping-bag"></i>
                 </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Elegance in Every Detail</h1>
+                <p>Discover our exclusive collection of handcrafted jewelry that complements your style</p>
+                <a href="#shop" class="btn">Shop Now</a>
             </div>
         </div>
     </section>
 
     <!-- Products Section -->
-    <section class="section" id="products">
+    <section class="products" id="shop">
         <div class="container">
-            <h2 class="section-title">Signature Collection</h2>
+            <h2 class="section-title">Our Collection</h2>
             <div class="products-grid">
                 <!-- Product 1 -->
                 <div class="product-card">
-                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')"></div>
+                    <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Gold Necklace" class="product-img">
                     <div class="product-info">
-                        <h3 class="product-name">Eternal Gold Necklace</h3>
-                        <p class="product-price">KSH 219,900</p>
-                        <a href="#" class="btn btn-secondary view-details" data-product="eternal">View Details</a>
+                        <h3 class="product-title">Elegant Gold Necklace</h3>
+                        <p class="product-price">KSH 4,500</p>
+                        <a href="#" class="btn">Add to Cart</a>
                     </div>
                 </div>
+
                 <!-- Product 2 -->
                 <div class="product-card">
-                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2067&q=80')"></div>
+                    <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Diamond Ring" class="product-img">
                     <div class="product-info">
-                        <h3 class="product-name">Diamond Solitaire Ring</h3>
-                        <p class="product-price">KSH 249,900</p>
-                        <a href="#" class="btn btn-secondary view-details" data-product="solitaire">View Details</a>
+                        <h3 class="product-title">Diamond Elegance Ring</h3>
+                        <p class="product-price">KSH 5,800</p>
+                        <a href="#" class="btn">Add to Cart</a>
                     </div>
                 </div>
+
                 <!-- Product 3 -->
                 <div class="product-card">
-                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80')"></div>
+                    <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Gold Earrings" class="product-img">
                     <div class="product-info">
-                        <h3 class="product-name">Pearl Elegance Earrings</h3>
-                        <p class="product-price">KSH 179,900</p>
-                        <a href="#" class="btn btn-secondary view-details" data-product="pearl">View Details</a>
+                        <h3 class="product-title">Golden Dangle Earrings</h3>
+                        <p class="product-price">KSH 3,200</p>
+                        <a href="#" class="btn">Add to Cart</a>
                     </div>
                 </div>
+
                 <!-- Product 4 -->
                 <div class="product-card">
-                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1588444650700-6c7f0c89d36b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')"></div>
+                    <img src="https://images.unsplash.com/photo-1588444650700-6c7f0c89d36b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Bracelet" class="product-img">
                     <div class="product-info">
-                        <h3 class="product-name">Rose Gold Bangle</h3>
-                        <p class="product-price">KSH 159,900</p>
-                        <a href="#" class="btn btn-secondary view-details" data-product="bangle">View Details</a>
-                    </div>
-                </div>
-                <!-- Product 5 -->
-                <div class="product-card">
-                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1602173574767-37ac01994b2a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80')"></div>
-                    <div class="product-info">
-                        <h3 class="product-name">Sapphire Statement Necklace</h3>
-                        <p class="product-price">KSH 229,900</p>
-                        <a href="#" class="btn btn-secondary view-details" data-product="sapphire">View Details</a>
-                    </div>
-                </div>
-                <!-- Product 6 -->
-                <div class="product-card">
-                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1611591437281-460bfbe1220a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')"></div>
-                    <div class="product-info">
-                        <h3 class="product-name">Minimalist Gold Chain</h3>
-                        <p class="product-price">KSH 189,900</p>
-                        <a href="#" class="btn btn-secondary view-details" data-product="minimalist">View Details</a>
+                        <h3 class="product-title">Delicate Gold Bracelet</h3>
+                        <p class="product-price">KSH 4,200</p>
+                        <a href="#" class="btn">Add to Cart</a>
                     </div>
                 </div>
             </div>
-            <div style="text-align: center; margin-top: 50px;">
-                <a href="#contact" class="btn btn-primary">Book a Private Viewing</a>
+            <div class="price-range">
+                Price Range: KSH 2,000 - KSH 6,000
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="section" id="contact">
+    <!-- About Section -->
+    <section class="about" id="about">
         <div class="container">
-            <h2 class="section-title">Experience Luxury</h2>
-            <div class="contact-section">
-                <form class="contact-form">
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone">
-                    </div>
-                    <div class="form-group">
-                        <label for="interest">I'm interested in</label>
-                        <select id="interest" style="padding: 12px 15px; border: 1px solid #333; border-radius: 5px; background-color: #2a2a2a; color: var(--light-text);">
-                            <option value="">Select an option</option>
-                            <option value="engagement">Engagement Jewelry</option>
-                            <option value="everyday">Everyday Collection</option>
-                            <option value="statement">Statement Pieces</option>
-                            <option value="custom">Custom Design</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Your Message</label>
-                        <textarea id="message" rows="5" placeholder="Tell us about your jewelry preferences or any special requests..."></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Request Consultation</button>
-                </form>
-                <div class="store-info">
-                    <h3>Visit Our Atelier</h3>
-                    <p><i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i>Nairobi, Parklands</p>
-                    <p><i class="fas fa-phone" style="margin-right: 10px;"></i>+254 712 345 678</p>
-                    <p><i class="fas fa-envelope" style="margin-right: 10px;"></i>experience@vitaminaccessories.com</p>
-                    <p><i class="fas fa-clock" style="margin-right: 10px;"></i>By appointment only</p>
-                    <a href="#" class="btn btn-secondary" style="margin-top: 20px;">Download Lookbook</a>
+            <h2 class="section-title">About Vitamin Accessories</h2>
+            <div class="about-content">
+                <div class="about-img">
+                    <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="About Vitamin Accessories">
+                </div>
+                <div class="about-text">
+                    <h2>Our Story</h2>
+                    <p>Vitamin Accessories was founded with a passion for creating exquisite jewelry that adds elegance to everyday life. Each piece is carefully crafted to reflect timeless beauty and modern sophistication.</p>
+                    <p>We believe that jewelry is not just an accessory, but an essential vitamin for your style - hence our name. Our collections are designed to complement your unique personality and enhance your confidence.</p>
+                    <p>All our jewelry is made with premium materials and attention to detail, ensuring that you receive pieces that will be treasured for years to come.</p>
+                    <a href="#" class="btn">Learn More</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer id="contact">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
                     <h3>Vitamin Accessories</h3>
-                    <p>Crafting timeless jewelry pieces that celebrate life's precious moments with elegance and sophistication.</p>
+                    <p>Your daily dose of elegance and style. We create jewelry that complements your personality and enhances your confidence.</p>
                     <div class="social-icons">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-pinterest"></i></a>
-                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
                     </div>
                 </div>
                 <div class="footer-column">
-                    <h3>Collections</h3>
-                    <p><a href="#">Engagement</a></p>
-                    <p><a href="#">Bridal</a></p>
-                    <p><a href="#">Everyday Luxury</a></p>
-                    <p><a href="#">Statement Pieces</a></p>
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#shop">Shop</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
                 </div>
                 <div class="footer-column">
-                    <h3>Services</h3>
-                    <p><a href="#">Custom Design</a></p>
-                    <p><a href="#">Jewelry Care</a></p>
-                    <p><a href="#">Repairs & Restoration</a></p>
-                    <p><a href="#">Virtual Consultations</a></p>
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
                 </div>
                 <div class="footer-column">
-                    <h3>Newsletter</h3>
-                    <p>Subscribe to receive updates on new collections and exclusive events.</p>
-                    <div class="form-group">
-                        <input type="email" placeholder="Your email address">
-                        <button class="submit-btn" style="margin-top: 10px;">Subscribe</button>
-                    </div>
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</li>
+                        <li><i class="fas fa-phone"></i> +254 712 345 678</li>
+                        <li><i class="fas fa-envelope"></i> info@vitaminaccessories.com</li>
+                    </ul>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2023 Vitamin Accessories. Crafted with passion in Nairobi.</p>
+                <p>&copy; 2023 Vitamin Accessories. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Product Detail Modal -->
-    <div class="modal" id="productModal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2 id="modal-product-name">Product Name</h2>
-            <div id="modal-product-image" style="height: 300px; background-size: cover; background-position: center; border-radius: 10px; margin: 20px 0;"></div>
-            <p id="modal-product-description">Product description will appear here.</p>
-            <p id="modal-product-price" style="color: var(--gold); font-weight: 500; font-size: 1.2rem; margin: 15px 0;"></p>
-            <div style="display: flex; gap: 10px; margin-top: 20px;">
-                <a href="#contact" class="btn btn-primary">Inquire About This Piece</a>
-                <a href="#" class="btn btn-secondary" id="modal-wishlist">Add to Wishlist</a>
-            </div>
-        </div>
-    </div>
-
     <script>
-        // Mobile menu toggle
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const navLinks = document.querySelector('.nav-links');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-        
-        // Smooth scrolling for navigation links
+        // Simple JavaScript for smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
-                    navLinks.classList.remove('active');
-                }
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
-        });
-        
-        // Form submission
-        const contactForm = document.querySelector('.contact-form');
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your inquiry! Our luxury consultant will contact you within 24 hours to schedule your private viewing.');
-            this.reset();
-        });
-        
-        // Product modal functionality
-        const modal = document.getElementById('productModal');
-        const closeModal = document.querySelector('.close-modal');
-        const viewDetailsButtons = document.querySelectorAll('.view-details');
-        
-        // Product data
-        const products = {
-            eternal: {
-                name: "Eternal Gold Necklace",
-                image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-                description: "Crafted from 18K yellow gold, this timeless necklace features a delicate chain with a solitaire diamond pendant. Perfect for everyday elegance or special occasions.",
-                price: "KSH 219,900"
-            },
-            solitaire: {
-                name: "Diamond Solitaire Ring",
-                image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2067&q=80",
-                description: "A classic 1-carat diamond set in platinum with a six-prong setting that maximizes brilliance. The band is tapered for a delicate, feminine appearance.",
-                price: "KSH 249,900"
-            },
-            pearl: {
-                name: "Pearl Elegance Earrings",
-                image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80",
-                description: "South Sea pearls set in 14K white gold with diamond accents. These elegant drop earrings bring sophistication to any ensemble.",
-                price: "KSH 179,900"
-            },
-            bangle: {
-                name: "Rose Gold Bangle",
-                image: "https://images.unsplash.com/photo-1588444650700-6c7f0c89d36b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-                description: "A sleek rose gold bangle with a subtle hammered texture. This versatile piece can be worn alone or stacked with other bracelets.",
-                price: "KSH 159,900"
-            },
-            sapphire: {
-                name: "Sapphire Statement Necklace",
-                image: "https://images.unsplash.com/photo-1602173574767-37ac01994b2a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80",
-                description: "Featuring a stunning blue sapphire surrounded by brilliant diamonds in a floral-inspired setting. This piece makes a bold statement for special occasions.",
-                price: "KSH 229,900"
-            },
-            minimalist: {
-                name: "Minimalist Gold Chain",
-                image: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-                description: "A delicate 14K gold chain with a subtle twist design. Perfect for layering or wearing alone as an understated everyday accessory.",
-                price: "KSH 189,900"
-            }
-        };
-        
-        // Open modal when view details is clicked
-        viewDetailsButtons.forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
-                const productId = this.getAttribute('data-product');
-                const product = products[productId];
-                
-                document.getElementById('modal-product-name').textContent = product.name;
-                document.getElementById('modal-product-image').style.backgroundImage = `url('${product.image}')`;
-                document.getElementById('modal-product-description').textContent = product.description;
-                document.getElementById('modal-product-price').textContent = product.price;
-                
-                modal.style.display = 'flex';
-            });
-        });
-        
-        // Close modal
-        closeModal.addEventListener('click', () => {
-            modal.style.display = 'none';
-        });
-        
-        // Close modal when clicking outside
-        window.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.style.display = 'none';
-            }
-        });
-        
-        // Wishlist functionality
-        document.getElementById('modal-wishlist').addEventListener('click', function(e) {
-            e.preventDefault();
-            alert('This piece has been added to your wishlist. We will notify you if it becomes available for private viewing.');
         });
     </script>
 </body>
